@@ -13,6 +13,7 @@ class Ship extends Sprite
 	var sailAngle:Float;
 	var rudderAngle:Float;
 	var speed:Float;
+	var realRotation:Float;
 	public function new(x:Int, y:Int) 
 	{
 		super();
@@ -31,13 +32,19 @@ class Ship extends Sprite
 		sailAngle = 0;
 		rudderAngle = .04;
 		speed = 0;
+		realRotation = 0;
 	}
 	public function act(windAngle:Float, windSpeed:Float):Void {
-		var force = windSpeed * Math.cos(rotation+sailAngle - windAngle);
+		rudderAngle = 0;
+		if (Main.that.keyLeft) rudderAngle -= 0.04;
+		if (Main.that.keyRight) rudderAngle += 0.04;
+		var force = windSpeed * Math.cos(realRotation+sailAngle - windAngle);
 		speed += force * Math.cos(sailAngle);
-		x += speed * Math.cos(rotation);
-		y += speed * Math.sin(rotation);
+		x += speed * Math.cos(realRotation);
+		y += speed * Math.sin(realRotation);
+		speed *= 0.99;
 		
-		rotation += (speed) * 0.1 * rudderAngle;
+		realRotation += (speed) * 0.1 * rudderAngle;
+		rotation = (180.0 / Math.PI) * realRotation;
 	}
 }

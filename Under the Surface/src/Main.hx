@@ -16,14 +16,14 @@ class Main extends Sprite
 {
 	var inited:Bool;
 	
-	static var that:Main;
+	public static var that:Main;
 	
 	//sprites
 	var ship:Ship;
 	var squid:Squid;
 	
-	var keyLeft:Bool;
-	var keyRight:Bool;
+	public var keyLeft:Bool;
+	public var keyRight:Bool;
 
 	/* ENTRY POINT */
 	
@@ -81,14 +81,19 @@ class Main extends Sprite
 	}
 	
 	public function tick(e:Event) {
-		ship.act(0, .1);
+		ship.act(0, .03);
 	}
 	
 	public function keyDown(e:KeyboardEvent) {
-		
+		keyHandle(e.keyCode, true);
 	}
 	
 	public function keyUp(e:KeyboardEvent) {
-		
+		keyHandle(e.keyCode, false);
+	}
+	
+	function keyHandle(code:Int, pressed:Bool) {
+		if (code == 37) keyLeft = pressed;
+		if (code == 39) keyRight = pressed;
 	}
 }
