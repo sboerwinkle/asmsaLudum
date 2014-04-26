@@ -15,7 +15,7 @@ class Squid extends Sprite
 	{
 		super();
 		
-		//create ship
+		//create squid
 		var squidIcon = new Bitmap(Assets.getBitmapData("img/squidIcon.png"));
 		sprite = new Sprite();
 		sprite.addChild(squidIcon);
@@ -23,14 +23,15 @@ class Squid extends Sprite
 		sprite.y = -squidIcon.height / 2;
 		this.addChild(sprite);
 		
-		//put ship on screen
+		//put squid on screen
 		this.x = x;
 		this.y = y;
 	}
 	
 	public function act() 
 	{
-		
+		//move towards boat!! aaaah
+		Main.that.ship.x;
 	}
 	
 }
