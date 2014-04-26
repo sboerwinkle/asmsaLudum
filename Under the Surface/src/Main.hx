@@ -15,6 +15,7 @@ import flash.Lib;
 class Main extends Sprite 
 {
 	var inited:Bool;
+	var myShip:Ship;
 
 	/* ENTRY POINT */
 	
@@ -28,6 +29,8 @@ class Main extends Sprite
 	{
 		if (inited) return;
 		inited = true;
+		myShip = new Ship();
+		stage.addChild(myShip);
 
 		// (your code here)
 		stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
