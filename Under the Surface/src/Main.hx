@@ -16,9 +16,14 @@ class Main extends Sprite
 {
 	var inited:Bool;
 	
+	static var that:Main;
+	
 	//sprites
-	static var ship:Ship;
+	var ship:Ship;
 	var squid:Squid;
+	
+	var keyLeft:Bool;
+	var keyRight:Bool;
 
 	/* ENTRY POINT */
 	
@@ -34,7 +39,10 @@ class Main extends Sprite
 		inited = true;
 
 		// (your code here)
+		that = this;
+		stage.addEventListener(Event.ENTER_FRAME, tick);
 		stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+		stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 		
 		// Stage:
 		// stage.stageWidth x stage.stageHeight @ stage.dpiScale
@@ -72,7 +80,15 @@ class Main extends Sprite
 		Lib.current.addChild(new Main());
 	}
 	
+	public function tick(e:Event) {
+		ship.act(0, .1);
+	}
+	
 	public function keyDown(e:KeyboardEvent) {
-		trace(e.keyCode);
+		
+	}
+	
+	public function keyUp(e:KeyboardEvent) {
+		
 	}
 }
