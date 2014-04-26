@@ -49,11 +49,7 @@ class Main extends Sprite
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, added);
 		stage.addEventListener(Event.RESIZE, resize);
-		#if ios
-		haxe.Timer.delay(init, 100); // iOS 6
-		#else
 		init();
-		#end
 	}
 	
 	public static function main() 
