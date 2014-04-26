@@ -16,9 +16,18 @@ class Main extends Sprite
 {
 	var inited:Bool;
 	
+	public static var that:Main;
+	
 	//sprites
 	var ship:Ship;
 	var squid:Squid;
+	
+	public var keyLeft:Bool;
+	public var keyRight:Bool;
+	public var keySailLeft:Bool;
+	public var keySailRight:Bool;
+	public var keySailMinus:Bool;
+	public var keySailPlus:Bool;
 
 	/* ENTRY POINT */
 	
@@ -34,7 +43,10 @@ class Main extends Sprite
 		inited = true;
 
 		// (your code here)
+		that = this;
+		stage.addEventListener(Event.ENTER_FRAME, tick);
 		stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+		stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 		
 		// Stage:
 		// stage.stageWidth x stage.stageHeight @ stage.dpiScale
@@ -72,7 +84,24 @@ class Main extends Sprite
 		Lib.current.addChild(new Main());
 	}
 	
+	public function tick(e:Event) {
+		ship.act(0, .03);
+	}
+	
 	public function keyDown(e:KeyboardEvent) {
-		trace(e.keyCode);
+		keyHandle(e.keyCode, true);
+	}
+	
+	public function keyUp(e:KeyboardEvent) {
+		keyHandle(e.keyCode, false);
+	}
+	
+	function keyHandle(code:Int, pressed:Bool) {
+		if (code == 65) keyLeft = pressed;
+		if (code == 68) keyRight = pressed;
+		if (code == 69) keySailLeft = pressed;
+		if (code == 81) keySailRight = pressed;
+		if (code == 83) keySailMinus = pressed;
+		if (code == 87) keySailPlus = pressed;
 	}
 }
