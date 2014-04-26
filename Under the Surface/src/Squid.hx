@@ -28,4 +28,9 @@ class Squid extends Sprite
 		this.y = y;
 	}
 	
+	public function act() 
+	{
+		
+	}
+	
 }
