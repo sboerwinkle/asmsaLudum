@@ -21,7 +21,7 @@ class Main extends Sprite
 	
 	//sprites
 	public var ship:Ship;
-	public var squid:Squid;
+	public var squids:List<Squid>;
 	
 	public var keyLeft:Bool;
 	public var keyRight:Bool;
@@ -50,13 +50,21 @@ class Main extends Sprite
 		inited = true;
 		
 		harpuns = new List<Harpun>();
+		squids = new List<Squid>();
 
+		ship = new Ship(100, 300);
+		this.addChild(ship);
+		
+		var squid = new Squid(400, 100);
+		addChild(squid);
+		squids.add(squid);
+		
 		// (your code here)
 		that = this;
 		stage.addEventListener(Event.ENTER_FRAME, tick);
 		stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 		stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
-		stage.addEventListener(MouseEvent.CLICK, mouseClick);
+		stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseClick);
 		scaleX = scaleY = 0.6;
 		
 		// Stage:
@@ -72,12 +80,6 @@ class Main extends Sprite
 	{
 		super();	
 		addEventListener(Event.ADDED_TO_STAGE, added);
-		
-		ship = new Ship(100, 300);
-		this.addChild(ship);
-		
-		squid = new Squid(400, 100);
-		this.addChild(squid);
 	}
 
 	function added(e) 
@@ -97,12 +99,14 @@ class Main extends Sprite
 	
 	public function tick(e:Event) {
 		ship.act(0, .03);
-		squid.act();
 		for (harpun in harpuns.iterator()) {
 			if (!harpun.act()) {
 				harpuns.remove(harpun);
 				removeChild(harpun);
 			}
+		}
+		for (squid in squids.iterator()) {
+			squid.act();
 		}
 		/*var dx = ship.x - 400;
 		var dy = ship.y - 240;
@@ -137,7 +141,7 @@ class Main extends Sprite
 	
 	function mouseClick(e:MouseEvent) {
 		mouseClicked = true;
-		myMouseX = e.stageX;
-		myMouseY = e.stageY;
+		myMouseX = mouseX;
+		myMouseY = mouseY;
 	}
 }
