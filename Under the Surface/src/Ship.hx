@@ -28,5 +28,12 @@ class Ship extends Sprite
 		this.x = x;
 		this.y = y;
 	}
-	
+	public function act(windAngle:Float, windSpeed:Float):Void {
+		var force = windSpeed * Math.cos(sprite.rotation+sailAngle - windAngle);
+		speed += force * Math.cos(sailAngle);
+		x += speed * Main.cos(sprite.rotation);
+		y += speed * Main.sin(sprite.rotation);
+		
+		sprite.rotation += (speed+3) * 0.1 * rudderAngle;
+	}
 }

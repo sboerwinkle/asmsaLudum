@@ -2,6 +2,7 @@ package ;
 
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.KeyboardEvent;
 import flash.Lib;
 
 /**
@@ -33,6 +34,7 @@ class Main extends Sprite
 		inited = true;
 
 		// (your code here)
+		stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 		
 		// Stage:
 		// stage.stageWidth x stage.stageHeight @ stage.dpiScale
@@ -68,5 +70,9 @@ class Main extends Sprite
 		Lib.current.stage.align = flash.display.StageAlign.TOP_LEFT;
 		Lib.current.stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
 		Lib.current.addChild(new Main());
+	}
+	
+	public function keyDown(e:KeyboardEvent) {
+		trace(e.keyCode);
 	}
 }
