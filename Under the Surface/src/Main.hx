@@ -24,6 +24,10 @@ class Main extends Sprite
 	
 	public var keyLeft:Bool;
 	public var keyRight:Bool;
+	public var keySailLeft:Bool;
+	public var keySailRight:Bool;
+	public var keySailMinus:Bool;
+	public var keySailPlus:Bool;
 
 	/* ENTRY POINT */
 	
@@ -93,7 +97,11 @@ class Main extends Sprite
 	}
 	
 	function keyHandle(code:Int, pressed:Bool) {
-		if (code == 37) keyLeft = pressed;
-		if (code == 39) keyRight = pressed;
+		if (code == 65) keyLeft = pressed;
+		if (code == 68) keyRight = pressed;
+		if (code == 69) keySailLeft = pressed;
+		if (code == 81) keySailRight = pressed;
+		if (code == 83) keySailMinus = pressed;
+		if (code == 87) keySailPlus = pressed;
 	}
 }
