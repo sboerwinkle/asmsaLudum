@@ -1,5 +1,7 @@
 package;
 import flash.display.Sprite;
+import openfl.Assets;
+import flash.display.Bitmap;
 
 /**
  * ...
@@ -11,13 +13,21 @@ class Ship extends Sprite
 	var sailAngle:Float;
 	var rudderAngle:Float;
 	var speed:Float;
-	public function new() 
+	public function new(x:Int, y:Int) 
 	{
 		super();
+		
+		//create ship
+		var shipIcon = new Bitmap(Assets.getBitmapData("img/shipIcon.png"));
 		sprite = new Sprite();
-		sprite.rotation = 90;
-		graphics.beginFill(0xFF8000);
-		graphics.drawRect( 200, 200, 20, 20);
+		sprite.addChild(shipIcon);
+		sprite.x = -shipIcon.width / 2;
+		sprite.y = -shipIcon.height / 2;
+		this.addChild(sprite);
+		
+		//put ship on screen
+		this.x = x;
+		this.y = y;
 	}
 	public function act(windAngle:Float, windSpeed:Float):Void {
 		var force = windSpeed * Math.cos(sprite.rotation+sailAngle - windAngle);
