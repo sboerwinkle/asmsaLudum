@@ -10,6 +10,9 @@ import flash.display.Bitmap;
 class Squid extends Sprite 
 {
 	var sprite:Sprite;
+	var vx:Float;
+	var vy:Float;
+	var frameCount:Float;
 	
 	public function new(x:Int, y:Int) 
 	{
@@ -26,12 +29,27 @@ class Squid extends Sprite
 		//put squid on screen
 		this.x = x;
 		this.y = y;
+		
+		vx = vy = frameCount = 0;
 	}
 	
 	public function act() 
 	{
-		//move towards boat!! aaaah
-		Main.that.ship.x;
+		vx *= 0.99;
+		vy *= 0.99;
+		var dx = Main.that.ship.x - x;
+		var dy = Main.that.ship.y - y;
+		if (frameCount-- < 0) {
+			frameCount = Math.random() * 50 + 100;
+			if (dx != 0 || dy != 0){
+				var dist = Math.sqrt(dx * dx + dy * dy);
+				vx += dx * 3 / dist;
+				vy += dy * 3 / dist;
+			}
+		}
+		x += vx;
+		y += vy;
+		rotation = (180.0/Math.PI)*Math.atan2(dx, -dy);
 	}
 	
 }

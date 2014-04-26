@@ -19,8 +19,8 @@ class Main extends Sprite
 	public static var that:Main;
 	
 	//sprites
-	var ship:Ship;
-	var squid:Squid;
+	public var ship:Ship;
+	public var squid:Squid;
 	
 	public var keyLeft:Bool;
 	public var keyRight:Bool;
@@ -47,6 +47,7 @@ class Main extends Sprite
 		stage.addEventListener(Event.ENTER_FRAME, tick);
 		stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 		stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
+		scaleX = scaleY = 0.6;
 		
 		// Stage:
 		// stage.stageWidth x stage.stageHeight @ stage.dpiScale
@@ -86,6 +87,7 @@ class Main extends Sprite
 	
 	public function tick(e:Event) {
 		ship.act(0, .03);
+		squid.act();
 	}
 	
 	public function keyDown(e:KeyboardEvent) {

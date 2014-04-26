@@ -51,10 +51,11 @@ class Ship extends Sprite
 		if (Main.that.keySailPlus) sailSize += 0.04;
 		if (sailSize < .1) sailSize = .1;
 		if (sailSize > 1) sailSize = 1;
-		var force = sailSize * windSpeed * Math.cos(realRotation+sailAngle - windAngle);
+		var force:Float = sailSize * windSpeed * Math.cos(realRotation+sailAngle - windAngle);
 		speed += force * Math.cos(sailAngle);
 		x += speed * Math.cos(realRotation);
 		y += speed * Math.sin(realRotation);
+		//trace(speed);
 		speed *= 0.995;
 		tmpCanvas.graphics.clear();
 		tmpCanvas.graphics.lineStyle(2, 0xFF, 1);
