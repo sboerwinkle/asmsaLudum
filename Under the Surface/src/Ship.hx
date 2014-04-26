@@ -69,5 +69,11 @@ class Ship extends Sprite
 		if (sailAngle > 2 * Math.PI) sailAngle -= 2 * Math.PI;
 		if (sailAngle < -2 * Math.PI) sailAngle += 2 * Math.PI;
 		rotation = (180.0 / Math.PI) * realRotation;
+		
+		if (Main.that.mouseClicked) {
+			Main.that.mouseClicked = false;
+			var angle = Math.atan2(Main.that.myMouseY - y, Main.that.myMouseX - x);
+			Main.that.addHarpun(new Harpun(x, y, angle));
+		}
 	}
 }
